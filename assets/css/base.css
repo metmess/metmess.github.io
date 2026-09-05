@@ -1,0 +1,170 @@
+/* ============================================================
+   MetMeSS 2026 - base.css
+   Design tokens, reset, typography, layout primitives, glass.
+   Edit colours and spacing here. Nothing else needs touching.
+   ============================================================ */
+
+:root{
+  /* --- surface: one deep blue family, no second theme --- */
+  --bg:        #070d18;
+  --bg-2:      #0a1424;
+  --ink:       #eef3fa;
+  --ink-2:     #a9bdd4;
+  --ink-3:     #6e849f;
+
+  /* --- one accent, locked for the whole page --- */
+  --accent:    #e8b55c;
+  --accent-in: #241905;   /* text that sits on the accent */
+  --accent-hi: #f3c87e;
+
+  /* --- glass --- */
+  --glass:        rgba(255,255,255,.045);
+  --glass-strong: rgba(255,255,255,.075);
+  --glass-line:   rgba(255,255,255,.115);
+  --glass-line-2: rgba(255,255,255,.2);
+  --glass-blur:   saturate(150%) blur(18px);
+  --lift: 0 18px 44px -22px rgba(2,8,20,.9);
+  --edge: inset 0 1px 0 rgba(255,255,255,.13);
+
+  /* --- shape: cards 20, controls 12, pills for chips and tabs --- */
+  --r-card: 20px;
+  --r-ctrl: 12px;
+
+  --max: 1200px;
+  --gut: clamp(18px, 4vw, 32px);
+  --sp:  clamp(64px, 9vw, 116px);
+
+  --disp:'Sora',var(--sans);
+  --sans:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:88px;
+  color-scheme:dark;
+  -webkit-text-size-adjust:100%;
+}
+body{
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(232,181,92,.18);
+}
+
+/* the whole page sits on one fixed starfield, so sections never
+   flip theme; the image is behind everything at low opacity */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-2;
+  background:
+    radial-gradient(1100px 700px at 78% -8%, rgba(58,110,175,.30), transparent 62%),
+    radial-gradient(900px 620px at 8% 108%, rgba(232,181,92,.10), transparent 66%),
+    var(--bg);
+}
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:-1;
+  background:url('../img/space.webp') center/cover no-repeat;
+  opacity:.24;
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.35) 62%,transparent 100%);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.35) 62%,transparent 100%);
+}
+
+img,svg{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-hi)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{font-family:var(--disp);letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(2.1rem,5.4vw,3.7rem);font-weight:700}
+h2{font-size:clamp(1.65rem,3.4vw,2.5rem);font-weight:600}
+h3{font-size:1.08rem;font-weight:600;letter-spacing:-.012em;line-height:1.35}
+p{text-wrap:pretty}
+.lead{color:var(--ink-2);font-size:clamp(1rem,1.5vw,1.1rem);max-width:60ch}
+.small{font-size:.86rem;color:var(--ink-2)}
+.dim{color:var(--ink-3)}
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-size:.72rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:12px;
+}
+
+/* ---------- layout ---------- */
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.section{padding-block:var(--sp);position:relative}
+.section-head{max-width:64ch;margin-bottom:clamp(32px,5vw,54px)}
+.section-head p{margin-top:14px}
+.stack-sm{display:flex;flex-direction:column;gap:10px}
+.grid{display:grid;gap:clamp(14px,2vw,20px)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--gut);top:12px;z-index:300;background:var(--accent);color:var(--accent-in);padding:11px 18px;border-radius:var(--r-ctrl)}
+
+/* ---------- glass primitive ----------
+   One rule for every panel on the site. Real glass needs three
+   things: the blur, a hairline edge, and an inner top highlight.  */
+.glass{
+  position:relative;
+  background:var(--glass);
+  border:1px solid var(--glass-line);
+  border-radius:var(--r-card);
+  box-shadow:var(--lift),var(--edge);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+}
+.glass-2{background:var(--glass-strong)}
+.glass-hover{transition:border-color .22s ease,transform .22s ease,background .22s ease}
+.glass-hover:hover{border-color:var(--glass-line-2);background:var(--glass-strong);transform:translateY(-3px)}
+
+/* solid fallbacks so the page never turns into unreadable mush */
+@supports not ((backdrop-filter:blur(4px)) or (-webkit-backdrop-filter:blur(4px))){
+  .glass{background:#0f1c30}
+  .glass-2{background:#132437}
+}
+@media (prefers-reduced-transparency:reduce){
+  .glass{background:#0f1c30;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .glass-2{background:#132437}
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:46px;padding:12px 24px;
+  border:1px solid transparent;border-radius:var(--r-ctrl);
+  font:inherit;font-size:.94rem;font-weight:600;cursor:pointer;
+  transition:background-color .18s ease,border-color .18s ease,transform .12s ease,color .18s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-p{background:var(--accent);color:var(--accent-in)}
+.btn-p:hover{background:var(--accent-hi);color:var(--accent-in)}
+.btn-s{background:rgba(255,255,255,.07);border-color:var(--glass-line-2);color:var(--ink)}
+.btn-s:hover{background:rgba(255,255,255,.13);color:#fff}
+.btn-sm{min-height:40px;padding:9px 17px;font-size:.86rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- chips and pills ---------- */
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 15px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid var(--glass-line);
+  font-size:.84rem;color:var(--ink-2);white-space:nowrap;
+}
+.chip b{color:var(--ink);font-weight:600}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+  .reveal{opacity:1!important;transform:none!important}
+}

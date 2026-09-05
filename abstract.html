@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#081324">
+<title>Submit an abstract | MetMeSS 2026 | IIT Kharagpur</title>
+<meta name="description" content="Abstract submission for MetMeSS 2026, 26-27 October 2026, IIT Kharagpur.">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/forms.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="page-head">
+ <div class="wrap">
+  <a class="brand" href="index.html"><img src="assets/img/logo.webp" width="680" height="399" alt="">MetMeSS 2026</a>
+  <a href="index.html" style="font-size:.88rem">&larr; Back to site</a>
+ </div>
+</header>
+
+<main id="main">
+
+<div class="wrap intro">
+ <p class="eyebrow">Abstract submission open &middot; closes 30 September 2026</p>
+ <h1>Submit your abstract</h1>
+ <p class="lead">You do not need to be registered to submit. If you have already registered, add your registration ID below so we can link the two - otherwise leave it blank and <a href="register.html">register whenever you like</a>.</p>
+</div>
+
+<div class="wrap">
+ <div class="steps">
+  <div class="stepbox on" id="sb1"><b>Step 1</b>Authors</div>
+  <div class="stepbox" id="sb2"><b>Step 2</b>Abstract</div>
+  <div class="stepbox" id="sb3"><b>Step 3</b>Upload &amp; submit</div>
+ </div>
+
+ <form id="absform" novalidate>
+
+ <!-- ============ STEP 1 ============ -->
+ <section class="card" id="step1">
+  <fieldset style="margin-bottom:0">
+   <legend>Submitting author</legend>
+   <p class="hint">We will send all correspondence about this abstract to this address.</p>
+   <div class="row">
+    <div class="field"><label for="f-name">Full name <span class="req">*</span></label><input id="f-name" name="name" required autocomplete="name"><div class="err">Please enter your name.</div></div>
+    <div class="field"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" type="email" name="email" required autocomplete="email" inputmode="email"><div class="err">Please enter a valid email.</div></div>
+   </div>
+   <div class="row">
+    <div class="field"><label for="f-affiliation">Affiliation <span class="req">*</span></label><input id="f-affiliation" name="affiliation" placeholder="Department, Institute, City" required autocomplete="organization"><div class="err">Please enter your affiliation.</div></div>
+    <div class="field"><label for="regId">Registration ID <small style="color:var(--dim);font-weight:400">- optional</small></label><input name="regId" id="regId" placeholder="KGP2000" autocomplete="off"><div class="err">Use the format KGP2000, or leave blank.</div></div>
+   </div>
+   <div class="ok-box" style="margin-top:4px"><b>Not registered yet?</b> Leave the ID blank. Submitting an abstract does not register you - you must still <a href="register.html">register and pay</a> before 30&nbsp;September 2026 for the abstract to be included in the programme.</div>
+  </fieldset>
+
+  <fieldset style="margin:26px 0 0">
+   <legend>Authors and affiliations</legend>
+   <p class="hint">List every author in the order they appear on the abstract, and mark the presenting author.</p>
+   <div id="authors"></div>
+   <button type="button" class="btn btn-s btn-sm" id="addAuthor">+ Add author</button>
+  </fieldset>
+
+  <div class="nav"><span></span><button type="button" class="btn btn-p" data-next="2">Continue &rarr;</button></div>
+ </section>
+
+ <!-- ============ STEP 2 ============ -->
+ <section class="card hide" id="step2">
+  <fieldset style="margin-bottom:0">
+   <legend>Abstract details</legend>
+   <p class="hint">These are used to build the programme. The full text stays in the file you upload.</p>
+   <div class="field"><label for="f-title">Abstract title <span class="req">*</span></label><input id="f-title" name="title"><div class="err">Please enter the abstract title.</div></div>
+   <div class="row">
+    <div class="field"><label for="f-theme">Preferred theme <span class="req">*</span></label>
+     <select id="f-theme" name="theme">
+      <option value="">Select&hellip;</option>
+      <option>1 - Early solar system processes &amp; organics</option>
+      <option>2 - Differentiated bodies: asteroids, Moon, Mars</option>
+      <option>3 - Asteroids, comets, micrometeorites &amp; returned samples</option>
+      <option>4 - Planetary analogues</option>
+      <option>5 - Planetary remote sensing &amp; instrumentation</option>
+      <option>6 - Space weathering, meteors, atmosphere &amp; ionosphere</option>
+     </select><div class="err">Please select a theme.</div>
+    </div>
+    <div class="field"><label for="f-prefer">Presentation preference <span class="req">*</span></label>
+     <select id="f-prefer" name="prefer"><option value="">Select&hellip;</option><option>Oral</option><option>Poster</option><option>No preference</option></select>
+     <div class="err">Please select a preference.</div>
+    </div>
+   </div>
+   <div class="field"><label for="f-keywords">Keywords <small style="color:var(--dim);font-weight:400">- optional, up to five</small></label><input id="f-keywords" name="keywords" placeholder="chondrite, shock metamorphism, Raman spectroscopy"></div>
+   <div class="field"><label for="f-remarks">Remarks (optional)</label><textarea id="f-remarks" name="remarks" placeholder="Anything the programme committee should know."></textarea></div>
+  </fieldset>
+  <div class="nav"><button type="button" class="btn btn-s" data-back="1">&larr; Back</button><button type="button" class="btn btn-p" data-next="3">Continue &rarr;</button></div>
+ </section>
+
+ <!-- ============ STEP 3 ============ -->
+ <section class="card hide" id="step3">
+  <fieldset style="margin-bottom:0">
+   <legend>Upload your abstract</legend>
+   <p class="hint">Both files are required - the editable DOCX and a PDF of the same abstract. Use the official template; abstracts in any other format will be returned.</p>
+
+   <div class="btns" style="margin-bottom:20px">
+    <a class="btn btn-s btn-sm" href="assets/docs/MetMeSS2026_Abstract_Template.docx" download>Download the template (DOCX)</a>
+   </div>
+
+   <label for="fileDoc">Word file (.docx) <span class="req">*</span></label>
+   <div class="drop" id="dropDoc">
+    <input type="file" id="fileDoc" accept=".docx,.doc,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+    <p><b style="color:var(--cyan)">Choose a file</b> or drag it here</p>
+    <small>.docx &middot; maximum 8&nbsp;MB</small>
+   </div>
+   <div id="docOut"></div>
+   <div class="err" id="docErr" style="margin-bottom:18px">Please attach your abstract as a .docx file.</div>
+
+   <label style="margin-top:18px">PDF of the same abstract <span class="req">*</span></label>
+   <div class="drop" id="dropPdf">
+    <input type="file" id="filePdf" accept=".pdf,application/pdf">
+    <p><b style="color:var(--cyan)">Choose a file</b> or drag it here</p>
+    <small>.pdf &middot; maximum 8&nbsp;MB</small>
+   </div>
+   <div id="pdfOut"></div>
+   <div class="err" id="pdfErr">Please attach a PDF of your abstract.</div>
+
+   <div class="notice"><b>Before you submit.</b> Check that the abstract fits one page, uses Times New Roman 10&nbsp;pt on US&nbsp;Letter, and that every meteorite name is an official name approved by the Nomenclature Committee.</div>
+
+   <div class="chk" style="margin-top:18px"><input type="checkbox" id="agree"><label for="agree" style="margin:0">I confirm the abstract is prepared using the official template and all co-authors have approved this submission. <span class="req">*</span></label></div>
+   <div class="err" id="agreeErr">Please confirm before submitting.</div>
+   <div class="bar" id="bar"><i></i></div>
+  </fieldset>
+  <div class="nav"><button type="button" class="btn btn-s" data-back="2">&larr; Back</button><button type="submit" class="btn btn-p" id="submitBtn">Submit abstract</button></div>
+ </section>
+ </form>
+
+ <section class="card" id="done">
+  <p class="eyebrow" style="text-align:center">Abstract received</p>
+  <h2 style="text-align:center;font-size:1.4rem">Thank you - your abstract is in.</h2>
+  <div class="idbox" id="doneId">ABS000</div>
+  <p class="lead" style="max-width:56ch;margin:0 auto">A confirmation with your files attached has been sent to <b id="doneEmail" style="color:#fff"></b>. Quote this abstract ID in any correspondence about it.</p>
+  <div class="ok-box" id="needReg" style="max-width:56ch;margin:22px auto 0;display:none"><b>One more step.</b> You have not registered yet. Your abstract will only be included in the programme once registration and payment are complete.</div>
+  <div style="margin-top:26px;text-align:center"><a class="btn btn-p" id="regCta" href="register.html">Register now &rarr;</a> <a class="btn btn-s" href="index.html">Back to the site</a></div>
+ </section>
+</div>
+
+</main>
+
+<footer class="page-foot"><div class="wrap">&copy; 2026 MetMeSS &middot; Department of Geology &amp; Geophysics, IIT Kharagpur &middot; <a href="mailto:metmess2026@gmail.com">metmess2026@gmail.com</a></div></footer>
+
+<script>
+/* ====== SAME URL AS register.html ====== */
+var SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+/* ====================================== */
+
+var MAX_MB = 8, cur = 1, files = {doc:null, pdf:null};
+function $(id){return document.getElementById(id);}
+
+/* ---------- authors ---------- */
+var authorsEl = $('authors');
+function addAuthor(presenting){
+ var i = authorsEl.children.length;
+ var d = document.createElement('div');
+ d.className = 'author';
+ d.innerHTML = '<span class="anum">Author ' + (i+1) + '</span>' +
+  (i>0 ? '<button type="button" class="rm" title="Remove">&times;</button>' : '') +
+  '<div class="row"><div class="field" style="margin-bottom:0"><label for="aName'+i+'">Name</label><input id="aName'+i+'" class="aName" autocomplete="off"></div>' +
+  '<div class="field" style="margin-bottom:0"><label for="aAff'+i+'">Affiliation</label><input id="aAff'+i+'" class="aAff" autocomplete="off"></div></div>' +
+  '<div class="chk"><input type="radio" id="aPres'+i+'" name="presenting" class="aPres" ' + (presenting?'checked':'') + '><label for="aPres'+i+'" style="margin:0">Presenting author</label></div>';
+ var rm = d.querySelector('.rm');
+ if (rm) rm.addEventListener('click', function(){ d.remove(); renumber(); });
+ authorsEl.appendChild(d);
+}
+function renumber(){ [].forEach.call(authorsEl.children, function(c,i){ c.querySelector('.anum').textContent = 'Author ' + (i+1); }); }
+$('addAuthor').addEventListener('click', function(){ addAuthor(false); });
+addAuthor(true);
+
+document.querySelector('[name=name]').addEventListener('blur', function(){
+ var a = authorsEl.querySelector('.aName'); if (a && !a.value) a.value = this.value;
+});
+document.querySelector('[name=affiliation]').addEventListener('blur', function(){
+ var a = authorsEl.querySelector('.aAff'); if (a && !a.value) a.value = this.value;
+});
+
+/* ---------- file pickers ---------- */
+function human(b){ return b < 1048576 ? (b/1024).toFixed(0)+' KB' : (b/1048576).toFixed(1)+' MB'; }
+function wire(kind, dropId, inputId, outId, exts){
+ var drop = $(dropId), input = $(inputId), out = $(outId);
+ drop.addEventListener('click', function(){ input.click(); });
+ ['dragenter','dragover'].forEach(function(ev){
+  drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('over'); });
+ });
+ ['dragleave','drop'].forEach(function(ev){
+  drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('over'); });
+ });
+ drop.addEventListener('drop', function(e){ if (e.dataTransfer.files.length) take(e.dataTransfer.files[0]); });
+ input.addEventListener('change', function(){ if (input.files.length) take(input.files[0]); });
+
+ function take(f){
+  var ok = exts.some(function(x){ return f.name.toLowerCase().slice(-x.length) === x; });
+  if (!ok){ alert('Please choose a ' + exts.join(' or ') + ' file.'); return; }
+  if (f.size > MAX_MB*1048576){ alert('That file is ' + human(f.size) + '. The limit is ' + MAX_MB + ' MB.'); return; }
+  files[kind] = f;
+  out.innerHTML = '<div class="filed good"><span class="fn">' + f.name.replace(/</g,'&lt;') +
+   '</span><span class="fs">' + human(f.size) + '</span><button type="button" class="fx">&times;</button></div>';
+  out.querySelector('.fx').addEventListener('click', function(){ files[kind]=null; out.innerHTML=''; input.value=''; });
+  drop.style.display = 'none';
+  $(kind === 'doc' ? 'docErr' : 'pdfErr').style.display = 'none';
+ }
+}
+wire('doc','dropDoc','fileDoc','docOut',['.docx','.doc']);
+wire('pdf','dropPdf','filePdf','pdfOut',['.pdf']);
+
+/* ---------- validation ---------- */
+function markBad(el,bad){ el.closest('.field').classList.add('x'); el.closest('.field').classList.toggle('bad',bad); return !bad; }
+function validate(step){
+ var ok = true;
+ if (step === 1){
+  ['name','email','affiliation'].forEach(function(n){
+   var el = document.querySelector('[name=' + n + ']');
+   var bad = !el.value.trim();
+   if (n === 'email' && el.value) bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
+   if (!markBad(el,bad)) ok = false;
+  });
+  var rid = $('regId');
+  if (rid.value.trim() && !/^KGP\d{4,}$/i.test(rid.value.trim())){ markBad(rid,true); ok = false; }
+  else markBad(rid,false);
+  var named = [].filter.call(authorsEl.querySelectorAll('.aName'), function(i){ return i.value.trim(); });
+  if (!named.length){ alert('Please enter at least one author.'); ok = false; }
+ }
+ if (step === 2){
+  ['title','theme','prefer'].forEach(function(n){
+   var el = document.querySelector('[name=' + n + ']');
+   if (!markBad(el, !el.value.trim())) ok = false;
+  });
+ }
+ if (step === 3){
+  if (!files.doc){ $('docErr').style.display='block'; ok = false; }
+  if (!files.pdf){ $('pdfErr').style.display='block'; ok = false; }
+  if (!$('agree').checked){ $('agreeErr').style.display='block'; ok = false; } else { $('agreeErr').style.display='none'; }
+ }
+ return ok;
+}
+function go(n){
+ for (var i=1;i<=3;i++){
+  $('step'+i).classList.toggle('hide', i!==n);
+  var sb = $('sb'+i); sb.classList.toggle('on', i===n); sb.classList.toggle('done', i<n);
+ }
+ cur = n; window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-next]').forEach(function(b){
+ b.addEventListener('click', function(){ if (validate(cur)) go(+b.dataset.next); });
+});
+document.querySelectorAll('[data-back]').forEach(function(b){
+ b.addEventListener('click', function(){ go(+b.dataset.back); });
+});
+
+/* ---------- submit ---------- */
+function readB64(f){
+ return new Promise(function(res, rej){
+  var r = new FileReader();
+  r.onload = function(){ res({ name:f.name, mimeType:f.type || 'application/octet-stream', data:String(r.result).split(',')[1] }); };
+  r.onerror = rej;
+  r.readAsDataURL(f);
+ });
+}
+
+$('absform').addEventListener('submit', function(e){
+ e.preventDefault();
+ if (!validate(3)) return;
+ var btn = $('submitBtn'), bar = $('bar');
+ btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Uploading&hellip;';
+ bar.style.display = 'block'; bar.firstElementChild.style.width = '25%';
+
+ var authors = [].map.call(authorsEl.children, function(c){
+  return { name:c.querySelector('.aName').value.trim(),
+       affiliation:c.querySelector('.aAff').value.trim(),
+       presenting:c.querySelector('.aPres').checked };
+ }).filter(function(a){ return a.name; });
+
+ var f = e.target, g = function(n){ var el = f.elements[n]; return el ? el.value.trim() : ''; };
+
+ Promise.all([readB64(files.doc), readB64(files.pdf)]).then(function(fs){
+  bar.firstElementChild.style.width = '60%';
+  var data = {
+   action:'abstract',
+   name:g('name'), email:g('email'), affiliation:g('affiliation'),
+   regId:g('regId').toUpperCase(),
+   title:g('title'), theme:g('theme'), prefer:g('prefer'),
+   keywords:g('keywords'), remarks:g('remarks'),
+   authors:authors, files:fs
+  };
+  if (SCRIPT_URL.indexOf('PASTE_') === 0){
+   alert('The form backend is not connected yet.\n\nPaste your Apps Script Web App URL into SCRIPT_URL at the top of the script block in abstract.html.');
+   btn.disabled = false; btn.textContent = 'Submit abstract'; bar.style.display='none'; return;
+  }
+  return fetch(SCRIPT_URL, { method:'POST', body:JSON.stringify(data), headers:{'Content-Type':'text/plain;charset=utf-8'} })
+   .then(function(r){ return r.json(); })
+   .then(function(res){
+    bar.firstElementChild.style.width = '100%';
+    if (res.ok){
+     $('absform').style.display = 'none';
+     document.querySelector('.steps').style.display = 'none';
+     $('doneId').textContent = res.absId;
+     $('doneEmail').textContent = data.email;
+     if (!data.regId){ $('needReg').style.display = 'block'; }
+     else { $('regCta').textContent = 'Back to the site'; $('regCta').href = 'index.html'; $('regCta').nextElementSibling.style.display='none'; }
+     $('done').style.display = 'block';
+     window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+     alert(res.message || 'Something went wrong. Please try again or email metmess2026@gmail.com.');
+     btn.disabled = false; btn.textContent = 'Submit abstract'; bar.style.display='none';
+    }
+   });
+ }).catch(function(){
+  alert('Upload failed. Check your connection and try again, or email your abstract to metmess2026@gmail.com.');
+  btn.disabled = false; btn.textContent = 'Submit abstract'; bar.style.display='none';
+ });
+});
+</script>
+</body>
+</html>

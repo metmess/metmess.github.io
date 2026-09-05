@@ -1,0 +1,187 @@
+/* ============================================================
+   MetMeSS 2026 - forms.css
+   Registration and abstract pages. Tokens live in base.css.
+   ============================================================ */
+
+:root{--ok:#7fe08d;--bad:#ff9a9a}
+
+.page-head{
+  position:sticky;top:0;z-index:40;
+  background:rgba(7,13,24,.78);
+  border-bottom:1px solid var(--glass-line);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+}
+.page-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:600;color:#fff}
+.brand img{height:32px;width:auto}
+
+.intro{padding:clamp(34px,5vw,52px) 0 clamp(20px,3vw,30px)}
+.intro h1{font-size:clamp(1.6rem,3.6vw,2.2rem)}
+.intro .lead{margin-top:14px}
+main.wrap{max-width:960px;padding-bottom:clamp(40px,6vw,72px)}
+
+/* ---------- stepper ---------- */
+.steps{display:flex;gap:8px;margin:26px 0 28px}
+.stepbox{
+  flex:1;min-width:0;padding:11px 13px;font-size:.8rem;color:var(--ink-3);
+  border:1px solid var(--glass-line);border-radius:var(--r-ctrl);
+  background:rgba(255,255,255,.03);
+}
+.stepbox b{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+.stepbox.on{border-color:var(--accent);background:rgba(232,181,92,.1);color:var(--ink)}
+.stepbox.done{border-color:rgba(127,224,141,.45);color:var(--ok)}
+
+/* ---------- card ---------- */
+.card{
+  background:var(--glass);border:1px solid var(--glass-line);border-radius:var(--r-card);
+  box-shadow:var(--lift),var(--edge);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  padding:clamp(20px,3vw,30px);
+}
+.card+.card{margin-top:18px}
+@supports not ((backdrop-filter:blur(4px)) or (-webkit-backdrop-filter:blur(4px))){.card{background:#0f1c30}}
+@media (prefers-reduced-transparency:reduce){.card{background:#0f1c30;-webkit-backdrop-filter:none;backdrop-filter:none}}
+
+fieldset{border:0;margin-bottom:26px}
+fieldset:last-of-type{margin-bottom:0}
+legend{font-family:var(--disp);font-size:1.05rem;font-weight:600;color:#fff;margin-bottom:4px}
+.hint{color:var(--ink-3);font-size:.84rem;margin-bottom:16px}
+
+/* ---------- fields ---------- */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:15px}
+label,.flabel{display:block;font-size:.82rem;font-weight:500;color:var(--ink-2);margin:0 0 6px}
+label .req,.flabel .req{color:var(--accent)}
+input,select,textarea{
+  width:100%;padding:12px 13px;font:inherit;font-size:.95rem;color:var(--ink);
+  background:rgba(4,9,18,.55);border:1px solid var(--glass-line);border-radius:var(--r-ctrl);
+  transition:border-color .16s ease,box-shadow .16s ease;
+}
+input::placeholder,textarea::placeholder{color:var(--ink-3)}
+select{background-color:#0c1626;color:var(--ink)}
+select option{background:#0c1626;color:var(--ink)}
+input:hover,select:hover,textarea:hover{border-color:var(--glass-line-2)}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,181,92,.2)}
+textarea{resize:vertical;min-height:92px}
+.err{display:none;color:var(--bad);font-size:.8rem;margin-top:6px}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--bad)}
+.field.bad .err{display:block}
+.hide{display:none}
+
+/* checkbox and radio share one hit target with their label */
+.chk{display:flex;align-items:center;gap:10px;margin-top:8px}
+.chk input{width:20px;height:20px;flex:none;accent-color:var(--accent)}
+.chk label{margin:0;font-size:.86rem;color:var(--ink-2);cursor:pointer;padding:6px 0}
+
+/* ---------- authors ---------- */
+.author{
+  position:relative;margin-bottom:14px;padding:18px 14px 14px;
+  background:rgba(4,9,18,.4);border:1px solid var(--glass-line);border-radius:var(--r-ctrl);
+}
+.author .anum{
+  position:absolute;top:-9px;left:14px;padding:1px 9px;border-radius:999px;
+  background:var(--accent);color:var(--accent-in);font-size:.66rem;font-weight:700;
+}
+.author .rm{
+  position:absolute;top:5px;right:5px;width:34px;height:34px;
+  background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:1.2rem;line-height:1;border-radius:9px;
+}
+.author .rm:hover{color:var(--bad);background:rgba(255,255,255,.06)}
+
+/* ---------- nav row ---------- */
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- fee ---------- */
+.fee{
+  padding:22px;margin-bottom:18px;border-radius:var(--r-card);
+  background:linear-gradient(140deg,rgba(46,92,146,.35),rgba(14,32,56,.35));
+  border:1px solid var(--glass-line);box-shadow:var(--edge);
+}
+.feerow{display:flex;justify-content:space-between;gap:14px;padding:7px 0;font-size:.9rem;color:var(--ink-2)}
+.feerow b{color:#fff;font-variant-numeric:tabular-nums}
+.feetot{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-top:10px;padding-top:14px;border-top:1px solid var(--glass-line)}
+.feetot span{font-size:.85rem;color:var(--ink-2)}
+.feetot b{font-family:var(--disp);font-size:1.85rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.promo{display:flex;gap:8px;margin-top:6px}
+.promo input{text-transform:uppercase}
+.pmsg{display:none;font-size:.82rem;margin-top:8px}
+.pmsg.ok{display:block;color:var(--ok)}
+.pmsg.bad{display:block;color:var(--bad)}
+
+/* ---------- payment ---------- */
+.pay{display:grid;grid-template-columns:210px 1fr;gap:24px;align-items:start}
+.qr{background:#fff;padding:10px;border-radius:14px}
+.upi{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin:8px 0 16px;padding:12px 14px;border-radius:var(--r-ctrl);
+  background:rgba(4,9,18,.55);border:1px dashed var(--glass-line-2);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92rem;color:var(--accent);
+}
+.upi button{background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:.78rem;min-height:34px;padding:0 4px}
+.upi button:hover{color:var(--accent)}
+
+/* ---------- file upload ---------- */
+.drop{
+  padding:24px;text-align:center;cursor:pointer;border-radius:var(--r-ctrl);
+  border:1.5px dashed var(--glass-line-2);background:rgba(4,9,18,.4);
+  transition:border-color .16s ease,background-color .16s ease;
+}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(232,181,92,.07)}
+.drop p{color:var(--ink-2);font-size:.89rem}
+.drop small{display:block;margin-top:6px;color:var(--ink-3);font-size:.78rem}
+.drop input{display:none}
+.filed{
+  display:flex;align-items:center;gap:10px;margin-top:10px;padding:11px 13px;font-size:.86rem;
+  background:rgba(4,9,18,.55);border:1px solid var(--glass-line);border-radius:var(--r-ctrl);
+}
+.filed .fn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+.filed .fs{flex:none;color:var(--ink-3);font-size:.78rem}
+.filed .fx{flex:none;background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:1.05rem;min-height:32px;padding:0 6px;border-radius:8px}
+.filed .fx:hover{color:var(--bad);background:rgba(255,255,255,.06)}
+.filed.good{border-color:rgba(127,224,141,.45)}
+.bar{display:none;height:4px;margin-top:14px;border-radius:4px;overflow:hidden;background:rgba(255,255,255,.1)}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s ease}
+
+/* ---------- notices ---------- */
+.notice,.ok-box{border-radius:var(--r-ctrl);padding:14px 17px;font-size:.87rem;color:var(--ink-2);margin-top:16px}
+.notice{background:rgba(232,181,92,.08);border:1px solid rgba(232,181,92,.26);border-left:3px solid var(--accent)}
+.notice b{color:var(--accent)}
+.ok-box{background:rgba(127,224,141,.08);border:1px solid rgba(127,224,141,.28);border-left:3px solid var(--ok)}
+.ok-box b{color:var(--ok)}
+
+/* ---------- done ---------- */
+#done{display:none;text-align:center;padding:40px 20px}
+#done .idbox{font-family:var(--disp);font-size:2.2rem;letter-spacing:.04em;color:var(--accent);margin:16px 0;word-break:break-word}
+.spin{
+  display:inline-block;width:15px;height:15px;border-radius:50%;
+  border:2px solid rgba(0,0,0,.25);border-top-color:var(--accent-in);
+  animation:sp .7s linear infinite;
+}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.page-foot{border-top:1px solid var(--glass-line);margin-top:50px;padding:26px 0;color:var(--ink-3);font-size:.84rem}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media(max-width:760px){
+  .pay{grid-template-columns:1fr}
+  .qr{max-width:240px;margin-inline:auto}
+}
+@media(max-width:640px){
+  .row{grid-template-columns:1fr}
+  /* 16px stops iOS Safari zooming the page when a field takes focus */
+  input,select,textarea{font-size:16px}
+  .steps{gap:6px}
+  .stepbox{padding:9px 9px;font-size:.74rem}
+  .stepbox b{font-size:.6rem;letter-spacing:.1em}
+  .nav{flex-direction:column-reverse}
+  .nav .btn,.btns .btn{width:100%}
+  .promo{flex-direction:column}
+  .promo .btn{width:100%}
+  .upi{flex-wrap:wrap;font-size:.85rem;word-break:break-all}
+  .feetot b{font-size:1.55rem}
+  #done{padding:32px 4px}
+  #done .idbox{font-size:1.8rem}
+}
