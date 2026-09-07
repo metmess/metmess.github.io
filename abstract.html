@@ -29,7 +29,7 @@
 <div class="wrap intro">
  <p class="eyebrow">Abstract submission open &middot; closes 30 September 2026</p>
  <h1>Submit your abstract</h1>
- <p class="lead">You do not need to be registered to submit. If you have already registered, add your registration ID below so we can link the two - otherwise leave it blank and <a href="register.html">register whenever you like</a>.</p>
+ <p class="lead">You do not need to be registered to submit. Registration opens shortly; we will link your abstract to it automatically using this email address.</p>
 </div>
 
 <div class="wrap">
@@ -52,9 +52,8 @@
    </div>
    <div class="row">
     <div class="field"><label for="f-affiliation">Affiliation <span class="req">*</span></label><input id="f-affiliation" name="affiliation" placeholder="Department, Institute, City" required autocomplete="organization"><div class="err">Please enter your affiliation.</div></div>
-    <div class="field"><label for="regId">Registration ID <small style="color:var(--dim);font-weight:400">- optional</small></label><input name="regId" id="regId" placeholder="KGP2000" autocomplete="off"><div class="err">Use the format KGP2000, or leave blank.</div></div>
    </div>
-   <div class="ok-box" style="margin-top:4px"><b>Not registered yet?</b> Leave the ID blank. Submitting an abstract does not register you - you must still <a href="register.html">register and pay</a> before 30&nbsp;September 2026 for the abstract to be included in the programme.</div>
+   <div class="ok-box" style="margin-top:4px"><b>Registration is not open yet.</b> Submitting an abstract does not register you. Once registration opens we will email everyone who has submitted, and you must register for the abstract to enter the programme.</div>
   </fieldset>
 
   <fieldset style="margin:26px 0 0">
@@ -139,8 +138,8 @@
   <h2 style="text-align:center;font-size:1.4rem">Thank you - your abstract is in.</h2>
   <div class="idbox" id="doneId">ABS000</div>
   <p class="lead" style="max-width:56ch;margin:0 auto">A confirmation with your files attached has been sent to <b id="doneEmail" style="color:#fff"></b>. Quote this abstract ID in any correspondence about it.</p>
-  <div class="ok-box" id="needReg" style="max-width:56ch;margin:22px auto 0;display:none"><b>One more step.</b> You have not registered yet. Your abstract will only be included in the programme once registration and payment are complete.</div>
-  <div style="margin-top:26px;text-align:center"><a class="btn btn-p" id="regCta" href="register.html">Register now &rarr;</a> <a class="btn btn-s" href="index.html">Back to the site</a></div>
+  <div class="ok-box" id="needReg" style="max-width:56ch;margin:22px auto 0;display:none"><b>One more step, later.</b> Registration is not open yet. We will email you at this address when it opens. Your abstract enters the programme once registration is complete.</div>
+  <div style="margin-top:26px;text-align:center"><a class="btn btn-p" href="index.html">Back to the site</a></div>
  </section>
 </div>
 
@@ -222,9 +221,6 @@ function validate(step){
    if (n === 'email' && el.value) bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
    if (!markBad(el,bad)) ok = false;
   });
-  var rid = $('regId');
-  if (rid.value.trim() && !/^KGP\d{4,}$/i.test(rid.value.trim())){ markBad(rid,true); ok = false; }
-  else markBad(rid,false);
   var named = [].filter.call(authorsEl.querySelectorAll('.aName'), function(i){ return i.value.trim(); });
   if (!named.length){ alert('Please enter at least one author.'); ok = false; }
  }
@@ -303,8 +299,7 @@ $('absform').addEventListener('submit', function(e){
      document.querySelector('.steps').style.display = 'none';
      $('doneId').textContent = res.absId;
      $('doneEmail').textContent = data.email;
-     if (!data.regId){ $('needReg').style.display = 'block'; }
-     else { $('regCta').textContent = 'Back to the site'; $('regCta').href = 'index.html'; $('regCta').nextElementSibling.style.display='none'; }
+     $('needReg').style.display = 'block';
      $('done').style.display = 'block';
      window.scrollTo({top:0,behavior:'smooth'});
     } else {
