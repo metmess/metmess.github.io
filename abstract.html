@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/forms.css">
+<script data-goatcounter="https://metmess.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -40,6 +41,12 @@
  </div>
 
  <form id="absform" novalidate>
+
+ <!-- Spam trap. Not a real field. Left empty by humans, filled by bots. -->
+ <div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">
+  <label for="f-website">Website</label>
+  <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+ </div>
 
  <!-- ============ STEP 1 ============ -->
  <section class="card" id="step1">
@@ -127,6 +134,7 @@
 
    <div class="chk" style="margin-top:18px"><input type="checkbox" id="agree"><label for="agree" style="margin:0">I confirm the abstract is prepared using the official template and all co-authors have approved this submission. <span class="req">*</span></label></div>
    <div class="err" id="agreeErr">Please confirm before submitting.</div>
+   <p class="hint" style="margin-top:10px">What happens to what you send us is set out in our <a href="privacy.html">privacy note</a>.</p>
    <div class="bar" id="bar"><i></i></div>
   </fieldset>
   <div class="nav"><button type="button" class="btn btn-s" data-back="2">&larr; Back</button><button type="submit" class="btn btn-p" id="submitBtn">Submit abstract</button></div>
@@ -145,7 +153,7 @@
 
 </main>
 
-<footer class="page-foot"><div class="wrap">&copy; 2026 MetMeSS &middot; Department of Geology &amp; Geophysics, IIT Kharagpur &middot; <a href="mailto:metmess2026@gmail.com">metmess2026@gmail.com</a></div></footer>
+<footer class="page-foot"><div class="wrap">&copy; 2026 MetMeSS &middot; Department of Geology &amp; Geophysics, IIT Kharagpur &middot; <a href="mailto:metmess2026@gmail.com">metmess2026@gmail.com</a> &middot; <a href="privacy.html">Privacy</a></div></footer>
 
 <script>
 /* ====== SAME URL AS register.html ====== */
@@ -153,6 +161,7 @@ var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAWj5GyKPRIvSNLE-Kfle
 /* ====================================== */
 
 var MAX_MB = 8, cur = 1, files = {doc:null, pdf:null};
+var FORM_T0 = Date.now();   /* spam trap: nobody fills three steps in under 10 seconds */
 function $(id){return document.getElementById(id);}
 
 /* ---------- authors ---------- */
@@ -264,6 +273,13 @@ function readB64(f){
 $('absform').addEventListener('submit', function(e){
  e.preventDefault();
  if (!validate(3)) return;
+
+ /* spam trap */
+ var trap = document.getElementById('f-website');
+ if ((trap && trap.value) || (Date.now() - FORM_T0) < 10000){
+  alert('We could not accept that submission. If you are a person and not a robot, please email your abstract to metmess2026@gmail.com and we will enter it by hand.');
+  return;
+ }
  var btn = $('submitBtn'), bar = $('bar');
  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Uploading&hellip;';
  bar.style.display = 'block'; bar.firstElementChild.style.width = '25%';
@@ -284,7 +300,7 @@ $('absform').addEventListener('submit', function(e){
    regId:g('regId').toUpperCase(),
    title:g('title'), theme:g('theme'), prefer:g('prefer'),
    keywords:g('keywords'), remarks:g('remarks'),
-   authors:authors, files:fs
+   authors:authors, files:fs, website:g('website')
   };
   if (SCRIPT_URL.indexOf('PASTE_') === 0){
    alert('The form backend is not connected yet.\n\nPaste your Apps Script Web App URL into SCRIPT_URL at the top of the script block in abstract.html.');
