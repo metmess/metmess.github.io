@@ -13,6 +13,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/forms.css">
+<style>
+ .apply-box{margin-top:24px;padding:20px 22px;border:1px solid var(--glass-line);border-radius:10px;background:var(--glass)}
+ .apply-lab{margin:0 0 4px;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+ .apply-addr{margin:0 0 10px;font-size:1.12rem;font-weight:600;word-break:break-all;-webkit-user-select:all;user-select:all}
+ #copyBtn.done{background:#1f7a4d;border-color:#1f7a4d;color:#fff}
+</style>
 <script data-goatcounter="https://metmess.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -68,10 +74,20 @@
   </ul>
 
   <h3 style="font-family:var(--disp);font-size:1.02rem;margin:26px 0 6px">How to apply</h3>
-  <p class="hint" style="margin-top:0">Send all four documents as a single PDF to <a href="mailto:metmess2026@gmail.com">metmess2026@gmail.com</a> with the subject line <b>Pre-conference school application &ndash; [your name]</b>. Applications received after 5 October 2026 will not be considered.</p>
+  <p class="hint" style="margin-top:0">Applications close on <b>5 October 2026</b>. Anything received after that date will not be considered.</p>
 
-  <div class="btns" style="margin-top:24px">
-   <a class="btn btn-p" href="mailto:metmess2026@gmail.com?subject=Pre-conference%20school%20application%20-%20">Apply by email</a>
+  <div class="apply-box">
+   <p class="apply-lab">Send your application to</p>
+   <p class="apply-addr"><span id="addr">metmess2026@gmail.com</span></p>
+   <p class="hint" style="margin:0 0 14px">Subject line: <b>Pre-conference school application &ndash; [your name]</b>. Attach one PDF containing all four documents.</p>
+   <div class="btns" style="margin:0">
+    <button class="btn btn-p" type="button" id="copyBtn" data-label="Copy address">Copy address</button>
+    <a class="btn btn-s" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=metmess2026@gmail.com&amp;su=Pre-conference%20school%20application%20-%20" target="_blank" rel="noopener">Compose in Gmail</a>
+    <a class="btn btn-s" href="mailto:metmess2026@gmail.com?subject=Pre-conference%20school%20application%20-%20">Open in mail app</a>
+   </div>
+  </div>
+
+  <div class="btns" style="margin-top:20px">
    <a class="btn btn-s" href="assets/docs/MetMeSS2026_School_Selection_Criteria.pdf" download>Selection criteria (PDF)</a>
   </div>
  </div>
@@ -92,10 +108,10 @@
   <div class="tw">
    <table style="width:100%;border-collapse:collapse">
     <tbody style="font-size:.93rem">
-     <tr><td style="padding:11px 0;border-bottom:1px solid var(--line)">Application deadline, pre-conference school</td><td style="padding:11px 0;border-bottom:1px solid var(--line);text-align:right"><b>5 October 2026</b></td></tr>
-     <tr><td style="padding:11px 0;border-bottom:1px solid var(--line)">Selection notification</td><td style="padding:11px 0;border-bottom:1px solid var(--line);text-align:right"><b>10 October 2026</b></td></tr>
-     <tr><td style="padding:11px 0;border-bottom:1px solid var(--line)">Outreach day for school students</td><td style="padding:11px 0;border-bottom:1px solid var(--line);text-align:right">24 October 2026</td></tr>
-     <tr><td style="padding:11px 0;border-bottom:1px solid var(--line)">Pre-conference school</td><td style="padding:11px 0;border-bottom:1px solid var(--line);text-align:right">25 October 2026</td></tr>
+     <tr><td style="padding:11px 0;border-bottom:1px solid var(--glass-line)">Application deadline, pre-conference school</td><td style="padding:11px 0;border-bottom:1px solid var(--glass-line);text-align:right"><b>5 October 2026</b></td></tr>
+     <tr><td style="padding:11px 0;border-bottom:1px solid var(--glass-line)">Selection notification</td><td style="padding:11px 0;border-bottom:1px solid var(--glass-line);text-align:right"><b>10 October 2026</b></td></tr>
+     <tr><td style="padding:11px 0;border-bottom:1px solid var(--glass-line)">Outreach day for school students</td><td style="padding:11px 0;border-bottom:1px solid var(--glass-line);text-align:right">24 October 2026</td></tr>
+     <tr><td style="padding:11px 0;border-bottom:1px solid var(--glass-line)">Pre-conference school</td><td style="padding:11px 0;border-bottom:1px solid var(--glass-line);text-align:right">25 October 2026</td></tr>
      <tr><td style="padding:11px 0">Symposium</td><td style="padding:11px 0;text-align:right">26&ndash;27 October 2026</td></tr>
     </tbody>
    </table>
@@ -109,6 +125,27 @@
 
 <footer class="page-foot"><div class="wrap">&copy; 2026 MetMeSS, Department of Geology &amp; Geophysics, IIT Kharagpur. <a href="mailto:metmess2026@gmail.com">metmess2026@gmail.com</a> &middot; <a href="privacy.html">Privacy</a></div></footer>
 
+<script>
+(function(){
+ var b=document.getElementById('copyBtn'), a=document.getElementById('addr');
+ if(!b||!a) return;
+ function flash(msg){ b.textContent=msg; b.classList.add('done');
+  setTimeout(function(){ b.textContent=b.dataset.label; b.classList.remove('done'); },2000); }
+ b.addEventListener('click',function(){
+  var t=a.textContent;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+   navigator.clipboard.writeText(t).then(function(){ flash('Copied'); },select);
+  } else { select(); }
+ });
+ function select(){
+  try{
+   var r=document.createRange(); r.selectNodeContents(a);
+   var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+   flash('Selected \u2014 press Ctrl+C');
+  }catch(e){ flash('Copy it manually'); }
+ }
+})();
+</script>
 <script src="assets/js/sky.js" defer></script>
 </body>
 </html>
