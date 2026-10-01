@@ -74,18 +74,87 @@
   </ul>
 
   <h3 style="font-family:var(--disp);font-size:1.02rem;margin:26px 0 6px">How to apply</h3>
-  <p class="hint" style="margin-top:0">Applications close on <b>5 October 2026</b>. Anything received after that date will not be considered.</p>
+  <p class="hint" style="margin-top:0">Applications close on <b>5 October 2026</b>. Anything received after that date will not be considered. Fill in the form below. It takes about five minutes.</p>
 
-  <div class="apply-box">
-   <p class="apply-lab">Send your application to</p>
-   <p class="apply-addr"><span id="addr">metmess2026@gmail.com</span></p>
-   <p class="hint" style="margin:0 0 14px">Subject line: <b>Pre-conference school application &ndash; [your name]</b>. Attach one PDF containing all four documents.</p>
-   <div class="btns" style="margin:0">
-    <button class="btn btn-p" type="button" id="copyBtn" data-label="Copy address">Copy address</button>
-    <a class="btn btn-s" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=metmess2026@gmail.com&amp;su=Pre-conference%20school%20application%20-%20" target="_blank" rel="noopener">Compose in Gmail</a>
-    <a class="btn btn-s" href="mailto:metmess2026@gmail.com?subject=Pre-conference%20school%20application%20-%20">Open in mail app</a>
+  <form id="schform" novalidate style="margin-top:22px">
+   <div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">
+    <label for="s-website">Website</label><input id="s-website" name="website" type="text" tabindex="-1" autocomplete="off">
    </div>
+   <fieldset>
+    <legend>About you</legend>
+    <div class="row">
+     <div class="field"><label for="s-name">Full name <span class="req">*</span></label><input id="s-name" name="name" required autocomplete="name"><div class="err">Please enter your name.</div></div>
+     <div class="field"><label for="s-email">Email <span class="req">*</span></label><input id="s-email" type="email" name="email" required autocomplete="email" inputmode="email"><div class="err">Please enter a valid email.</div></div>
+    </div>
+    <div class="row">
+     <div class="field"><label for="s-phone">Mobile number <span class="req">*</span></label><input id="s-phone" type="tel" name="phone" required autocomplete="tel" inputmode="tel"><div class="err">Please enter a mobile number.</div></div>
+     <div class="field"><label for="s-gender">Gender <span class="req">*</span></label><select id="s-gender" name="gender" required><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select><div class="err">Please select one. Used only to plan accommodation.</div></div>
+    </div>
+   </fieldset>
+   <fieldset>
+    <legend>Your institute</legend>
+    <div class="row">
+     <div class="field"><label for="s-inst">Institute / university <span class="req">*</span></label><input id="s-inst" name="institute" required autocomplete="organization"><div class="err">Please enter your institute.</div></div>
+     <div class="field"><label for="s-dept">Department <span class="req">*</span></label><input id="s-dept" name="department" required><div class="err">Please enter your department.</div></div>
+    </div>
+    <div class="row">
+     <div class="field"><label for="s-deg">Programme <span class="req">*</span></label><select id="s-deg" name="degree" required><option value="">Select</option><option>MSc</option><option>MTech</option><option>PhD</option><option>Other</option></select><div class="err">Please select your programme.</div></div>
+     <div class="field"><label for="s-yr">Year of study <span class="req">*</span></label><input id="s-yr" name="year" required placeholder="e.g. 2nd year MSc"><div class="err">Please enter your year.</div></div>
+    </div>
+    <div class="row">
+     <div class="field"><label for="s-sup">Supervisor or Head of Department <span class="req">*</span></label><input id="s-sup" name="supervisor" required><div class="err">Please enter a name.</div></div>
+     <div class="field"><label for="s-area">Research area <span class="req">*</span></label><input id="s-area" name="area" required placeholder="e.g. meteorite petrology"><div class="err">Please enter your research area.</div></div>
+    </div>
+   </fieldset>
+   <fieldset>
+    <legend>Travel and stay</legend>
+    <div class="row">
+     <div class="field"><label for="s-city">Travelling from (city) <span class="req">*</span></label><input id="s-city" name="city" required><div class="err">Please enter your city.</div></div>
+     <div class="field"><label for="s-travel">Travel support needed <span class="req">*</span></label><select id="s-travel" name="travel" required><option value="">Select</option><option>Train, sleeper class</option><option>Bus</option><option>Not needed, I am local or self-funded</option></select><div class="err">Please select one.</div></div>
+    </div>
+    <div class="row">
+     <div class="field"><label for="s-food">Food preference <span class="req">*</span></label><select id="s-food" name="food" required><option value="">Select</option><option>Vegetarian</option><option>Non-vegetarian</option></select><div class="err">Please select one.</div></div>
+     <div class="field"><label for="s-sym">Will you also attend the symposium (26-27 Oct)?</label><select id="s-sym" name="symposium"><option>Not sure yet</option><option>Yes</option><option>No</option></select></div>
+    </div>
+   </fieldset>
+   <fieldset>
+    <legend>Why you want to attend</legend>
+    <div class="field"><label for="s-why">Short note <span class="req">*</span></label><textarea id="s-why" name="why" rows="4" maxlength="1000" required></textarea><div class="err">Please write a few lines (up to 1000 characters).</div></div>
+   </fieldset>
+   <fieldset>
+    <legend>Documents</legend>
+    <p class="hint">One PDF containing the CV, statement of purpose, recommendation letter and NOC, in that order. Maximum 8&nbsp;MB.</p>
+    <div class="drop" id="dropS"><input type="file" id="fileS" accept=".pdf,application/pdf"><p><b style="color:var(--cyan)">Choose a file</b> or drag it here</p><small>.pdf &middot; maximum 8&nbsp;MB</small></div>
+    <div id="outS"></div>
+    <div class="err" id="fileErr">Please attach your application PDF.</div>
+    <div class="chk" style="margin-top:18px"><input type="checkbox" id="s-agree"><label for="s-agree" style="margin:0">I confirm the details are correct and I am a registered MSc, MTech or PhD student. <span class="req">*</span></label></div>
+    <div class="err" id="agreeErr">Please confirm before submitting.</div>
+    <p class="hint" style="margin-top:10px">What happens to what you send us is set out in our <a href="privacy.html">privacy note</a>.</p>
+    <div class="bar" id="bar"><i></i></div>
+   </fieldset>
+   <div class="nav"><button type="submit" class="btn btn-p" id="sBtn">Submit application</button></div>
+  </form>
+
+  <div class="card" id="sdone" style="display:none;margin-top:22px">
+   <p class="eyebrow" style="text-align:center">Application received</p>
+   <h2 style="text-align:center;font-size:1.3rem">Thank you, your application is in.</h2>
+   <div id="sId" style="font-family:var(--disp);font-size:2rem;letter-spacing:.04em;color:var(--accent);margin:16px 0;text-align:center">SCH000</div>
+   <p class="lead" style="max-width:56ch;margin:0 auto">A confirmation has been sent to <b id="sEmail"></b>. Quote this ID in any correspondence. Selected applicants are notified by 10 October 2026.</p>
   </div>
+
+  <details style="margin-top:18px">
+   <summary class="hint" style="cursor:pointer">Form not working? Apply by email instead</summary>
+   <div class="apply-box">
+    <p class="apply-lab">Send your application to</p>
+    <p class="apply-addr"><span id="addr">metmess2026@gmail.com</span></p>
+    <p class="hint" style="margin:0 0 14px">Subject line: <b>Pre-conference school application &ndash; [your name]</b>. Attach one PDF containing all four documents, and give your institute, programme, city and mobile number in the mail.</p>
+    <div class="btns" style="margin:0">
+     <button class="btn btn-p" type="button" id="copyBtn" data-label="Copy address">Copy address</button>
+     <a class="btn btn-s" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=metmess2026@gmail.com&amp;su=Pre-conference%20school%20application%20-%20" target="_blank" rel="noopener">Compose in Gmail</a>
+     <a class="btn btn-s" href="mailto:metmess2026@gmail.com?subject=Pre-conference%20school%20application%20-%20">Open in mail app</a>
+    </div>
+   </div>
+  </details>
 
   <div class="btns" style="margin-top:20px">
    <a class="btn btn-s" href="assets/docs/MetMeSS2026_School_Selection_Criteria.pdf" download>Selection criteria (PDF)</a>
@@ -125,6 +194,72 @@
 
 <footer class="page-foot"><div class="wrap">&copy; 2026 MetMeSS, Department of Geology &amp; Geophysics, IIT Kharagpur. <a href="mailto:metmess2026@gmail.com">metmess2026@gmail.com</a> &middot; Created by <a href="https://kishangeo.github.io/">Kishan Tiwari</a> &middot; <a href="privacy.html">Privacy</a></div></footer>
 
+<script>
+(function(){
+ var SCRIPT_URL='https://script.google.com/macros/s/AKfycbxAWj5GyKPRIvSNLE-KfleeuR-2MB0nGisFkmZW_Ei_B8DVAi5P1VfQQNefZ-XOWD5yCw/exec';
+ var MAX_MB=8, T0=Date.now(), file=null;
+ function $(i){return document.getElementById(i);}
+ var form=$('schform'); if(!form) return;
+ function human(b){return b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';}
+ var drop=$('dropS'), input=$('fileS'), out=$('outS');
+ drop.addEventListener('click',function(){input.click();});
+ ['dragenter','dragover'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('over');});});
+ ['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('over');});});
+ drop.addEventListener('drop',function(e){if(e.dataTransfer.files.length)take(e.dataTransfer.files[0]);});
+ input.addEventListener('change',function(){if(input.files.length)take(input.files[0]);});
+ function take(f){
+  if(f.name.toLowerCase().slice(-4)!=='.pdf'){alert('Please choose a PDF file.');return;}
+  if(f.size>MAX_MB*1048576){alert('That file is '+human(f.size)+'. The limit is '+MAX_MB+' MB.');return;}
+  file=f;
+  out.innerHTML='<div class="filed good"><span class="fn">'+f.name.replace(/</g,'&lt;')+'</span><span class="fs">'+human(f.size)+'</span><button type="button" class="fx">&times;</button></div>';
+  out.querySelector('.fx').addEventListener('click',function(){file=null;out.innerHTML='';input.value='';drop.style.display='';});
+  drop.style.display='none'; $('fileErr').style.display='none';
+ }
+ function mark(el,bad){var f=el.closest('.field');f.classList.add('x');f.classList.toggle('bad',bad);return !bad;}
+ function validate(){
+  var ok=true, first=null;
+  [].forEach.call(form.querySelectorAll('[required]'),function(el){
+   var bad=!el.value.trim();
+   if(el.type==='email'&&el.value) bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
+   if(!mark(el,bad)){ok=false; if(!first) first=el;}
+  });
+  if(!file){$('fileErr').style.display='block';ok=false;}
+  if(!$('s-agree').checked){$('agreeErr').style.display='block';ok=false;} else $('agreeErr').style.display='none';
+  if(first) first.focus();
+  return ok;
+ }
+ function b64(f){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res({name:f.name,mimeType:f.type||'application/pdf',data:String(r.result).split(',')[1]});};r.onerror=rej;r.readAsDataURL(f);});}
+ form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!validate()) return;
+  if($('s-website').value||(Date.now()-T0)<15000){alert('We could not accept that submission. If you are a person, please apply by email using the option below the form.');return;}
+  var btn=$('sBtn'), bar=$('bar');
+  btn.disabled=true; btn.textContent='Uploading...'; bar.style.display='block'; bar.firstElementChild.style.width='30%';
+  var g=function(n){var el=form.elements[n];return el?el.value.trim():'';};
+  b64(file).then(function(fl){
+   bar.firstElementChild.style.width='65%';
+   var data={action:'school',website:g('website'),name:g('name'),email:g('email'),phone:g('phone'),gender:g('gender'),
+    institute:g('institute'),department:g('department'),degree:g('degree'),year:g('year'),supervisor:g('supervisor'),area:g('area'),
+    city:g('city'),travel:g('travel'),food:g('food'),symposium:g('symposium'),why:g('why'),files:[fl]};
+   return fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}})
+    .then(function(r){return r.json();})
+    .then(function(res){
+     bar.firstElementChild.style.width='100%';
+     if(res.ok){
+      form.style.display='none'; $('sId').textContent=res.schId; $('sEmail').textContent=data.email;
+      $('sdone').style.display='block'; $('sdone').scrollIntoView({behavior:'smooth',block:'center'});
+     } else {
+      alert(res.message||'Something went wrong. Please try again or apply by email.');
+      btn.disabled=false; btn.textContent='Submit application'; bar.style.display='none';
+     }
+    });
+  }).catch(function(){
+   alert('Upload failed. Check your connection and try again, or apply by email.');
+   btn.disabled=false; btn.textContent='Submit application'; bar.style.display='none';
+  });
+ });
+})();
+</script>
 <script>
 (function(){
  var b=document.getElementById('copyBtn'), a=document.getElementById('addr');
