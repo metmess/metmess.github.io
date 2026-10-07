@@ -12,7 +12,8 @@
     ['', 'Home page'],
     ['register.html', 'How to register'],
     ['abstract.html', 'Submit an abstract'],
-    ['school.html', 'Pre-conference school']
+    ['school.html', 'Pre-conference school'],
+    ['support.html', 'Student travel support']
   ];
   var TEXT = 'MetMeSS 2026, the 6th Symposium on Meteoroids, Meteors & Meteorites: Messengers from Space.\n' +
     'IIT Kharagpur, 24 to 29 October 2026, with PRL Ahmedabad.\n' +
