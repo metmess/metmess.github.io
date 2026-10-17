@@ -74,6 +74,9 @@
 }
 .partners img{height:48px;width:auto}
 .partners .plabel{font-size:.7rem;letter-spacing:.19em;text-transform:uppercase;color:var(--ink-3);width:100%;text-align:center}
+.sponsors{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+.sponsors .plate{display:flex;align-items:center;justify-content:center;min-height:110px;min-width:200px;padding:18px 26px;border-radius:16px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5)}
+.sponsors img{height:64px;width:auto;max-width:220px;object-fit:contain}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,60px);align-items:center}
